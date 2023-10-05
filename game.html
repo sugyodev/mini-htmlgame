@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon Hunt</title>
+    <link rel="stylesheet" href="./assets/css/game.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="image-container">
+      <div id="banners">
+        <div class="progress-bar">
+          <div class="progress"></div>
+          <span class="countdown"></span>
+        </div>
+        <div class="pokemon-count">6</div>
+
+        <img
+          src="./assets/imgs/bg1.jpg"
+          id="bg"
+          style="position: absolute"
+          draggable="false"
+        />
+        <img
+          draggable="false"
+          id="first_pokemon"
+          src="./assets/imgs/1.png"
+          style="
+            position: absolute;
+            width: 130px;
+            left: 200px;
+            top: 300px;
+          "
+          onclick="clickPokemon(this)"
+        />
+        <img
+          draggable="false"
+          id="second_pokemon"
+          src="./assets/imgs/2.png"
+          style="
+            position: absolute;
+            width: 100px;
+            left: 500px;
+            top: 140px;
+          "
+          onclick="clickPokemon(this)"
+        />
+      </div>
+      <div id="banners_magnifying"></div>
+    </div>
+    <!-- <p>mouse is at coordinates: <span id="coordinates">...</span></p> -->
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>

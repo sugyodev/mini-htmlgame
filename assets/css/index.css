@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#dinant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 10px solid #333;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+.play_btn {
+  width: 68%;
+  height: 67px;
+  border-radius: 30px;
+  border: none;
+  background: #fdd000;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #59382d;
+  box-shadow: rgba(0, 0, 0, 0.4) 11px 10px 1px 2px;
+  cursor: pointer;
+}
+.image-container {
+  position: relative;
+  scale: 1;
+}
+
+/* @media screen and (max-width: 580px) {
+.image-container {
+    scale: 0.6 !important;
+  }
+} */
