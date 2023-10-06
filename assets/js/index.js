@@ -8,7 +8,6 @@ var bgWidth = img.width;
 var bgHeight = img.height;
 var deviation = bodyWidth / 2 - bgWidth / 2;
 
-
 var pokemonCount = 6;
 var scene = 1;
 var firstpokeclick = false;
@@ -44,17 +43,17 @@ function clickPokemon(that) {
   firstrandomTop = Math.floor(Math.random() * bgHeight);
   secondrandomTop = Math.floor(Math.random() * bgHeight);
   var id = $(that).attr("id");
-//   setTimeout(function () {
-    $(that).hide();
-    $("#" + id).hide();
-//   }, 2500);
+  //   setTimeout(function () {
+  $(that).hide();
+  $("#" + id).hide();
+  //   }, 2500);
 
   if (id == "first_pokemon") {
     firstpokeclick = true;
   } else if (id == "second_pokemon") {
     secondpokeclick = true;
   }
-  pokemonCount --;
+  pokemonCount--;
   $(".pokemon-count").text(pokemonCount);
   if (firstpokeclick == true && secondpokeclick == true) {
     setTimeout(function () {
@@ -95,7 +94,7 @@ function clickPokemon(that) {
         $("#mcontainer #second_pokemon").css("top", secondrandomTop + "px");
       } else {
         alert("success");
-        window.parent.postMessage('Complete',"*");
+        window.parent.postMessage("Complete", "*");
         window.location.href = "index.html";
       }
     }, 1000);
@@ -138,7 +137,22 @@ function get_mouseXY(e) {
   //  mousey-=fig_y;
 }
 
+let moved;
+let downListener = () => {
+  moved = false;
+};
+document.addEventListener("mousedown", downListener);
+let moveListener = () => {
+  moved = true;
+};
+// $(document).touchmove(function (event) {});
+document.addEventListener('touchmove', function(e) {
+    handleMoveGlass(e);
+});
 $(document).mousemove(function (event) {
+    handleMoveGlass(event);
+});
+function handleMoveGlass(event) {
   var my_canvas = $("#banners");
   var the_offset = my_canvas.offset();
 
@@ -165,7 +179,7 @@ $(document).mousemove(function (event) {
 
   $("#mcontainer").css("left", -mousex + deviation + diameter / 2);
   $("#mcontainer").css("top", -mousey + diameter / 2);
-});
+}
 
 const countdownEl = document.querySelector(".countdown");
 const progressBarEl = document.querySelector(".progress");
@@ -187,7 +201,7 @@ function countdown() {
   } else {
     // countdown finished
     progressBarEl.style.width = "100%";
-    countdownEl.textContent = "Time's up!";
+    countdownEl.textContent = "0";
     setTimeout(function () {
       if (confirm("Time's up! Will you restart the game?")) {
         window.location.reload();

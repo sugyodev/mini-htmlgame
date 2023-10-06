@@ -32,14 +32,14 @@ body {
 }
 
 #banners_magnifying:before {
-  content:"";
+  content: "";
   position: absolute;
   width: 15px;
-  height:70px;
+  height: 70px;
   border-radius: 30px;
   background-color: #333;
-  top:86px;
-  left:90px;
+  top: 86px;
+  left: 90px;
   z-index: 12;
   box-shadow: 0 0 0 4px #fffffe, 0 0 1px 2px rgba(16, 204, 48, 0.25),
     inset 0 0 20px 2px rgba(204, 134, 134, 0.7);
@@ -63,53 +63,85 @@ body {
 
 .progress-bar {
   width: 300px;
-  height: 20px;
+  height: 40px;
   background-color: #f2f2f2;
   position: absolute;
-  left: 40px;
-  top: 20px;
+  left: 80px;
+  top: 50px;
   z-index: 111;
-  border-radius: 13px;
+  border-radius: 21px;
 }
 
 .progress {
-  height: 80%;
-  background-color: #4caf50;
+  height: 70%;
+  background-color: #f2c920;
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 0;
   width: 0%;
   z-index: 112;
   border-radius: 13px;
 }
-.countdown {
+#timer {
+  background-image: url("../imgs/timer.png");
+  width: 90px;
+  height: 105px;
+  top: -34px;
+  left: -66px;
   position: absolute;
+  z-index: 114;
+  text-align: center;
+  line-height: 109px;
+}
+.countdown {
+  /* position: absolute;
   z-index: 113;
-  left: 14px;
+  left: 14px; */
+  color: #f2c820;
+  font-size: 2.5rem;
+  font-weight: 900;
 }
 .pokemon-count {
+  width: 90px;
+  height: 90px;
   position: absolute;
-  left: 83%;
+  left: 81%;
   z-index: 114;
   top: 20px;
-  font-size: 4rem;
+  font-size: 3rem;
   color: #7aafde;
   font-weight: 900;
-  text-shadow: 2px 2px 1px white;
+  text-shadow: 0px 2px 8px white;
+  -webkit-text-stroke-color: white;
+  -webkit-text-stroke-width: 3.5px;
+  font-family: sans-serif;
+  background-image: url(../imgs/score.png);
+  background-size: 90px 90px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
 }
-
 @media screen and (max-width: 580px) {
   #bg {
     width: 356px;
-  }  
+  }
   body {
     display: inline-block;
   }
   .progress-bar {
-    width: 212px;
+    width: 150px;
   }
   #banners {
     width: 368px;
   }
+  .pokemon-count {
+    left: 67%;
+  }
 }
-  
+
+#mcontainer .pokemon-count {
+  display: none;
+}
+#mcontainer .progress-bar {
+  display: none;
+}
