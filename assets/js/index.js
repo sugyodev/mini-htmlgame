@@ -2,28 +2,31 @@ var scale = 2;
 var diameter = 20;
 
 var bodyWidth = document.body.clientWidth;
+var bodyHeight = document.body.clientHeight;
 var img = document.getElementById("bg");
 var bgWidth = img.width;
+var bgHeight = img.height;
 var deviation = bodyWidth / 2 - bgWidth / 2;
+
 
 var pokemonCount = 6;
 var scene = 1;
-var pokeclickCount = 0;
+var firstpokeclick = false;
+var secondpokeclick = false;
 var firstpoke = 0;
 var secondpoke = 1;
 
-var firstrandomLeft = Math.floor(Math.random() * 470);
-var secondrandomLeft = Math.floor(Math.random() * 470);
+var firstrandomLeft = Math.floor(Math.random() * bgWidth);
+var secondrandomLeft = Math.floor(Math.random() * bgWidth);
 
-var firstrandomTop = Math.floor(Math.random() * 650);
-var secondrandomTop = Math.floor(Math.random() * 650);
+var firstrandomTop = Math.floor(Math.random() * bgHeight);
+var secondrandomTop = Math.floor(Math.random() * bgHeight);
 
 $(".pokemon-count").text(pokemonCount);
 
 var ary = [1, 2, 3, 4, 5, 6];
 
 shuffle(ary);
-console.log(ary);
 
 $("#first_pokemon").attr("src", "./assets/imgs/" + ary[firstpoke] + ".png");
 $("#first_pokemon").css("left", firstrandomLeft + "px");
@@ -34,61 +37,70 @@ $("#second_pokemon").css("left", secondrandomLeft + "px");
 $("#second_pokemon").css("top", secondrandomTop + "px");
 
 function clickPokemon(that) {
-  firstrandomLeft = Math.floor(Math.random() * 470);
-  secondrandomLeft = Math.floor(Math.random() * 470);
+  //   setTimeout(function () {
+  firstrandomLeft = Math.floor(Math.random() * bgWidth);
+  secondrandomLeft = Math.floor(Math.random() * bgWidth);
 
-  firstrandomTop = Math.floor(Math.random() * 650);
-  secondrandomTop = Math.floor(Math.random() * 650);
-
-  $(that).hide();
+  firstrandomTop = Math.floor(Math.random() * bgHeight);
+  secondrandomTop = Math.floor(Math.random() * bgHeight);
   var id = $(that).attr("id");
-  $("#" + id).hide();
-  // console.log($('#'+id).show());
+//   setTimeout(function () {
+    $(that).hide();
+    $("#" + id).hide();
+//   }, 2500);
 
-  pokeclickCount++;
-  pokemonCount--;
-  $(".pokemon-count").text(pokemonCount);
-  console.log(pokeclickCount);
-  if (pokemonCount > 0) {
-    if (pokeclickCount == 2) {
-      pokeclickCount = 0;
-      scene++;
-      firstpoke += 2;
-      secondpoke += 2;
-      $("#bg").attr("src", "./assets/imgs/bg" + scene + ".jpg");
-      $("#first_pokemon").attr(
-        "src",
-        "./assets/imgs/" + ary[firstpoke] + ".png"
-      );
-      $("#second_pokemon").attr(
-        "src",
-        "./assets/imgs/" + ary[secondpoke] + ".png"
-      );
-
-      $("#banners_magnifying").html(
-        "<div id='mcontainer'>" + $("#banners").html() + "</div>"
-      );
-      $("#banners_magnifying img").each(function (index) {
-        var the_offset = $(this).offset();
-        $(this).attr("left_i", the_offset.left);
-        $(this).attr("top_i", the_offset.top);
-      });
-      $("#mcontainer").find("img").show();
-      $("#banners").find("img").show();
-      $("#first_pokemon").css("left", firstrandomLeft + "px");
-      $("#second_pokemon").css("left", secondrandomLeft + "px");
-      $("#first_pokemon").css("top", firstrandomTop + "px");
-      $("#second_pokemon").css("top", secondrandomTop + "px");
-
-      $("#mcontainer #first_pokemon").css("left", firstrandomLeft + "px");
-      $("#mcontainer #second_pokemon").css("left", secondrandomLeft + "px");
-      $("#mcontainer #first_pokemon").css("top", firstrandomTop + "px");
-      $("#mcontainer #second_pokemon").css("top", secondrandomTop + "px");
-    }
-  } else {
-    alert("success");
-    window.location.href = "index.html";
+  if (id == "first_pokemon") {
+    firstpokeclick = true;
+  } else if (id == "second_pokemon") {
+    secondpokeclick = true;
   }
+  pokemonCount --;
+  $(".pokemon-count").text(pokemonCount);
+  if (firstpokeclick == true && secondpokeclick == true) {
+    setTimeout(function () {
+      if (pokemonCount > 0) {
+        firstpokeclick = false;
+        secondpokeclick = false;
+        scene++;
+        firstpoke += 2;
+        secondpoke += 2;
+        $("#bg").attr("src", "./assets/imgs/bg" + scene + ".jpg");
+        $("#first_pokemon").attr(
+          "src",
+          "./assets/imgs/" + ary[firstpoke] + ".png"
+        );
+        $("#second_pokemon").attr(
+          "src",
+          "./assets/imgs/" + ary[secondpoke] + ".png"
+        );
+
+        $("#banners_magnifying").html(
+          "<div id='mcontainer'>" + $("#banners").html() + "</div>"
+        );
+        $("#banners_magnifying img").each(function (index) {
+          var the_offset = $(this).offset();
+          $(this).attr("left_i", the_offset.left);
+          $(this).attr("top_i", the_offset.top);
+        });
+        $("#mcontainer").find("img").show();
+        //   $("#banners").find("img").show();
+        $("#first_pokemon").css("left", firstrandomLeft + "px");
+        $("#second_pokemon").css("left", secondrandomLeft + "px");
+        $("#first_pokemon").css("top", firstrandomTop + "px");
+        $("#second_pokemon").css("top", secondrandomTop + "px");
+
+        $("#mcontainer #first_pokemon").css("left", firstrandomLeft + "px");
+        $("#mcontainer #second_pokemon").css("left", secondrandomLeft + "px");
+        $("#mcontainer #first_pokemon").css("top", firstrandomTop + "px");
+        $("#mcontainer #second_pokemon").css("top", secondrandomTop + "px");
+      } else {
+        alert("success");
+        window.parent.postMessage('Complete',"*");
+        window.location.href = "index.html";
+      }
+    }, 1000);
+  }
+  //   }, 100);
 }
 
 $("#banners_magnifying").html(
@@ -207,3 +219,6 @@ function shuffle(array) {
 
   return array;
 }
+
+$("#banners").find("#first_pokemon").hide();
+$("#banners").find("#second_pokemon").hide();

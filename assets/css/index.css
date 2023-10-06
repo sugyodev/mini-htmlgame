@@ -29,8 +29,14 @@ body {
   scale: 1;
 }
 
-/* @media screen and (max-width: 580px) {
-.image-container {
+@media screen and (max-width: 580px) {
+/* .image-container {
     scale: 0.6 !important;
+  } */
+  #bg-img {
+    width: 356px;
   }
-} */
+  #instruction-img {
+    width: 320px;
+  }
+}

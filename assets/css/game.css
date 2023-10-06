@@ -98,9 +98,18 @@ body {
   text-shadow: 2px 2px 1px white;
 }
 
-/* @media screen and (max-width: 580px) {
-  .image-container {
-      scale: 0.6 !important;
-    }
+@media screen and (max-width: 580px) {
+  #bg {
+    width: 356px;
+  }  
+  body {
+    display: inline-block;
   }
-   */
+  .progress-bar {
+    width: 212px;
+  }
+  #banners {
+    width: 368px;
+  }
+}
+  
