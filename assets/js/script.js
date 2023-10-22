@@ -261,7 +261,7 @@ function drawStars(bg = background) {
     ctx.clearRect(0, 0, cnvsWidth, cnvsHeight);
     ctx.drawImage(bg, 0, 0, cnvsWidth, cnvsHeight);
   } else {
-    // ctx.clearRect(0, 0, cnvsWidth, cnvsHeight);
+    ctx.clearRect(0, 0, cnvsWidth, cnvsHeight);
     ctx.drawImage(bg, 0, 0, cnvsWidth, cnvsHeight);
 
     // Creates trail and spins canvas on end game screens
@@ -358,11 +358,11 @@ function moveLeft() {
   // Removes the delay in movement after initial keydown
   time = setInterval(function () {
     // Appends angle value to ships angle of position
-    angle += 2;
+    angle += 3;
     if (angle > 360) {
       angle = 0;
     }
-  }, 10);
+  }, 12);
 }
 
 // Move right functionality
@@ -370,11 +370,11 @@ function moveRight() {
   // Fires movement rapidly - Removes the delay in movement after initial keydown and increases speed
   time = setInterval(function () {
     // Appends angle value to ships angle of position
-    angle -= 2;
+    angle -= 3;
     if (angle < -360) {
       angle = 0;
     }
-  }, 10);
+  }, 12);
 }
 
 // Stops movement when user stops touching screen
