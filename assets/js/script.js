@@ -358,11 +358,11 @@ function moveLeft() {
   // Removes the delay in movement after initial keydown
   time = setInterval(function () {
     // Appends angle value to ships angle of position
-    angle += 3;
+    angle += 2;
     if (angle > 360) {
       angle = 0;
     }
-  }, 12);
+  }, 6);
 }
 
 // Move right functionality
@@ -370,11 +370,11 @@ function moveRight() {
   // Fires movement rapidly - Removes the delay in movement after initial keydown and increases speed
   time = setInterval(function () {
     // Appends angle value to ships angle of position
-    angle -= 3;
+    angle -= 2;
     if (angle < -360) {
       angle = 0;
     }
-  }, 12);
+  }, 6);
 }
 
 // Stops movement when user stops touching screen
